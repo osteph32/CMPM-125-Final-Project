@@ -1,2 +1,3 @@
 # CMPM-125-Final-Project
-Final Project for CMPM 125: A  Unity puzzle and action game about a robot escaping a spaceship using magnetic push, pull, and break mechanics.
+
+Unity version 6000.3.14f1. Currently prototyping the robot's abilities.
