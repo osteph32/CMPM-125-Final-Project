@@ -14,7 +14,7 @@ public class SimplePushPull : MonoBehaviour
     public float pullRange = 10f;
     public float pullStrength = 20f;
     public float damping = 8f;
-    public float pushStrength = 5f;
+    public float pushStrength = 20f;
     public float extraDistance = 1f; // Distance to hold the object away from the Player
 
     private Rigidbody pulledObject;
@@ -144,8 +144,8 @@ public class SimplePushPull : MonoBehaviour
 
     private void ThrowObject()
     {
-        // Aim away from the robot
-        Vector3 throwDirection = (pulledObject.worldCenterOfMass - transform.position).normalized;
+        
+        Vector3 throwDirection = playerCamera.transform.forward;
 
         // Add the ThrownObject component if it doesn't already exist
         if (pulledObject.GetComponent<ThrownObject>() == null)
