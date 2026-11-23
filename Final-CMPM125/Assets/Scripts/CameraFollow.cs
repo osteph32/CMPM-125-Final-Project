@@ -8,13 +8,21 @@ public class CameraFollow : MonoBehaviour
 
     public float distance = 5f;
     public float height = 2f;
-    public float sensitivity = 0.10f; //camera sensitivity for mouse movement
+    public const float DefaultSensitivity = 0.10f;
+
+    public float sensitivity = DefaultSensitivity; // Set sens to the default value
+
 
     private float vertRotation;
     private float horRotation = 15f;
 
     void Start()
     {
+        // Load the saved mouse sensitivity
+        sensitivity = PlayerPrefs.GetFloat("MouseSensitivity", DefaultSensitivity);
+
+        Debug.Log("Loaded mouse sensitivity: " + sensitivity);
+
         // Start facing the same direction as the player
         horRotation = player.eulerAngles.y;
 
