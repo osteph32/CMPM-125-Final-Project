@@ -19,23 +19,60 @@ public class SimplePushPull : MonoBehaviour
 
     private Rigidbody pulledObject;
     private bool pulling;
+    private bool keyboardHolding;
 
     private void Update()
     {
-        if (Mouse.current == null || playerCamera == null || holdPoint == null)
+        if (playerCamera == null || holdPoint == null)
             return;
 
-        // Hold left-click to pull an object
-        if (Mouse.current.leftButton.wasPressedThisFrame && pulledObject == null)
+        var mouse = Mouse.current;
+        var keyboard = Keyboard.current;
+
+        // E toggles between grabbing and dropping.
+        if (keyboard != null && keyboard.eKey.wasPressedThisFrame)
+        {
+            if (pulledObject != null)
+            {
+                ReleaseObject();
+            }
+            else
+            {
+                PullObject();
+                keyboardHolding = pulledObject != null;
+            }
+        }
+        // Original mouse controls still work.
+        else if (mouse != null && mouse.leftButton.wasPressedThisFrame && pulledObject == null)
+        {
             PullObject();
+        }
 
-        // Release left-click to stop pulling
-        if (!Mouse.current.leftButton.isPressed)
-            pulling = false;
+        // F or right click throws the held object.
+        bool throwPressed =
+            (keyboard != null && keyboard.fKey.wasPressedThisFrame) ||
+            (mouse != null && mouse.rightButton.wasPressedThisFrame);
 
-        // Right-click to throw the object away
-        if (Mouse.current.rightButton.wasPressedThisFrame && pulledObject != null)
+        if (throwPressed && pulledObject != null)
+        {
             ThrowObject();
+            return;
+        }
+
+        // Releasing the mouse only drops held objects.
+        if (!keyboardHolding &&
+            (mouse == null || !mouse.leftButton.isPressed))
+        {
+            ReleaseObject();
+        }
+    }
+
+    // Recovery can release the magnet before returning the cube to a safe point.
+    public void ReleaseObject()
+    {
+        pulling = false;
+        pulledObject = null;
+        keyboardHolding = false;
     }
 
     private void FixedUpdate()
@@ -158,7 +195,6 @@ public class SimplePushPull : MonoBehaviour
         );
 
         // Stop pulling the object
-        pulledObject = null;
-        pulling = false;
+        ReleaseObject();
     }
 }
