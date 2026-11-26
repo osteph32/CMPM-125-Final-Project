@@ -181,7 +181,7 @@ public class SimplePushPull : MonoBehaviour
 
     private void ThrowObject()
     {
-        
+
         Vector3 throwDirection = playerCamera.transform.forward;
 
         // Add the ThrownObject component if it doesn't already exist
