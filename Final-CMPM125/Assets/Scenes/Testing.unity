@@ -270,7 +270,6 @@ GameObject:
   - component: {fileID: 101254583}
   - component: {fileID: 101254582}
   - component: {fileID: 101254587}
-  - component: {fileID: 101254588}
   m_Layer: 0
   m_Name: ScrapCube
   m_TagString: Untagged
@@ -410,18 +409,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a954ff7adb80ff7469ad613ddea0e1c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pullable
---- !u!114 &101254588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 101254581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4819a190114e4c94f81a070ca0d34e53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
