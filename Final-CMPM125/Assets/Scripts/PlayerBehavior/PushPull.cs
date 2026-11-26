@@ -26,13 +26,15 @@ public class SimplePushPull : MonoBehaviour
             return;
 
         // Hold left-click to pull an object
-        if (Mouse.current.leftButton.wasPressedThisFrame && pulledObject == null)
+        if (Mouse.current.leftButton.wasPressedThisFrame && pulledObject == null) //Player should not be holding another object
             PullObject();
 
         // Release left-click to stop pulling
         if (!Mouse.current.leftButton.isPressed)
+        {
             pulling = false;
-
+            pulledObject = null; // Stop pulling the object
+        }
         // Right-click to throw the object away
         if (Mouse.current.rightButton.wasPressedThisFrame && pulledObject != null)
             ThrowObject();
@@ -144,7 +146,7 @@ public class SimplePushPull : MonoBehaviour
 
     private void ThrowObject()
     {
-        
+
         Vector3 throwDirection = playerCamera.transform.forward;
 
         // Add the ThrownObject component if it doesn't already exist

@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
 {
     PlayerHealth health =
         collision.gameObject.GetComponent<PlayerHealth>(); //get health component of player
-Debug.Log(health);
+        
     if (health != null)
     {
         health.TakeDamage(1); //subtract health from player
